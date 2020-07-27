@@ -9,18 +9,23 @@
 #include <mutex>
 #include <thread>
 
-class Histogram
+namespace
 {
-public:
-  Histogram() : histogramImpl(new leveldb::Histogram()) {}
-  virtual ~Histogram() {}
-  leveldb::Histogram *histogramImpl;
-  std::mutex mutex;
 
-private:
-  Histogram(const Histogram &) {}
-  Histogram &operator=(const Histogram &) { return *this; }
-};
+  class Histogram
+  {
+  public:
+    Histogram() : histogramImpl(new leveldb::Histogram()) {}
+    virtual ~Histogram() {}
+    leveldb::Histogram *histogramImpl;
+    std::mutex mutex;
+
+  private:
+    Histogram(const Histogram &) {}
+    Histogram &operator=(const Histogram &) { return *this; }
+  };
+
+} // anonymous namespace
 
 CHistogram CHistogramInit()
 {
