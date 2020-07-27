@@ -15,9 +15,9 @@ namespace
   class Histogram
   {
   public:
-    Histogram() : histogramImpl(new leveldb::Histogram()) {}
+    Histogram() : histogramImpl(new dkmt::leveldb::Histogram()) {}
     virtual ~Histogram() {}
-    leveldb::Histogram *histogramImpl;
+    dkmt::leveldb::Histogram *histogramImpl;
     std::mutex mutex;
 
   private:
